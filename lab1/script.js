@@ -1,4 +1,3 @@
-// Wait for the DOM to fully load
 document.addEventListener('DOMContentLoaded', function() {
     // Get elements using different methods
     const header = document.querySelector('header');
@@ -10,6 +9,43 @@ document.addEventListener('DOMContentLoaded', function() {
     const windowWidthInfo = document.createElement('div');
     windowWidthInfo.id = 'window-width-info';
     document.body.appendChild(windowWidthInfo);
+    const containers = document.getElementsByClassName('container');
+    console.log('Containers found:', containers.length);
+    const paragraphs = document.getElementsByTagName('p');
+    console.log('Paragraphs found:', paragraphs.length);
+    const emailInputs = document.getElementsByName('email');
+    console.log('Email inputs found:', emailInputs.length);
+
+// Add mouseover and mouseout event for containers
+for (const container of containers) {
+    container.style.transition = 'transform 0.3s ease';
+
+    container.addEventListener('mouseover', function() {
+        container.style.transform = 'scale(1.15)';
+    });
+
+    container.addEventListener('mouseout', function() {
+        container.style.transform = 'scale(1)';
+    });
+}
+
+    // Add click event for paragraphs
+    for (const paragraph of paragraphs) {
+        paragraph.addEventListener('click', function() {
+            alert('Ви натиснули на абзац: ' + paragraph.textContent);
+        });
+    }
+
+    // Add focus event for email inputs
+    for (const emailInput of emailInputs) {
+        emailInput.addEventListener('focus', function() {
+            emailInput.style.backgroundColor = '#d3d3d3';
+        });
+
+        emailInput.addEventListener('blur', function() {
+            emailInput.style.backgroundColor = '';
+        });
+    }
 
     // Function to change header background color on mouseover
     header.addEventListener('mouseover', function() {
@@ -25,12 +61,12 @@ document.addEventListener('DOMContentLoaded', function() {
     logo.addEventListener('dblclick', function() {
         logo.style.color = logo.style.color === 'red' ? '' : 'red';
     });
-    
-    // Add click event to each menu option (e.g., "Еспресо - 40 грн")
+
+    // Add click and mouseover events for menu items
     menuItems.forEach(option => {
         option.addEventListener('click', function() {
-            menuItems.forEach(item => item.classList.remove('highlight')); // Remove highlight from all
-            option.classList.add('highlight'); // Add highlight only to the clicked option
+            menuItems.forEach(item => item.classList.remove('highlight'));
+            option.classList.add('highlight');
         });
 
         // Add mouseover event to change text color
@@ -38,14 +74,12 @@ document.addEventListener('DOMContentLoaded', function() {
             option.style.color = 'blue';
         });
 
-        // Add mouseout event to reset text color
         option.addEventListener('mouseout', function() {
             option.style.color = '';
         });
 
-        // Add contextmenu event (right-click) to edit the menu item text
         option.addEventListener('contextmenu', function(event) {
-            event.preventDefault(); // Prevent the default context menu
+            event.preventDefault();
             const newText = prompt('Введіть новий текст для цього пункту меню:', option.textContent);
             if (newText) {
                 option.textContent = newText;
@@ -53,16 +87,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Function to handle form submission
+    // Handle contact form submission
     contactForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent form from submitting normally
+        event.preventDefault();
         const name = contactForm.querySelector('input[type="text"]').value;
         const email = contactForm.querySelector('input[type="email"]').value;
         const message = contactForm.querySelector('textarea').value;
 
         if (name && email && message) {
             alert(`Дякуємо, ${name}! Ваше повідомлення надіслано.`);
-            contactForm.reset(); // Clear form fields
+            contactForm.reset();
         } else {
             alert('Будь ласка, заповніть всі поля.');
         }
