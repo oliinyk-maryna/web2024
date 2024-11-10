@@ -123,3 +123,9 @@ tabButtons.forEach(button => {
         })
     })
 })
+
+flatpickr("#task-deadline", {
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
+    minDate: "today"
+});
