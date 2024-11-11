@@ -17,14 +17,12 @@ const taskListEl = document.getElementById("task-list")
 const tabButtons = document.querySelectorAll(".tab-button")
 
 let currentCategory = "all"
-// Додаємо нове завдання
 addTaskButtonEl.addEventListener("click", function() {
     let taskName = taskNameEl.value
     let taskDeadline = taskDeadlineEl.value
     let taskCategory = taskCategoryEl.value
     
     if (taskName && taskDeadline && taskCategory) {
-        // Додаємо завдання до Firebase
         push(tasksInDB, {
             name: taskName,
             deadline: taskDeadline,
