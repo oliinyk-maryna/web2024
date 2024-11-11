@@ -129,10 +129,11 @@ flatpickr("#task-deadline", {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-    flatpickr(".datetimepicker", {
-        enableTime: true,         
-        dateFormat: "Y-m-d H:i",  
-        minDate: "today",        
+    flatpickr("#task-deadline", {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+        minDate: "today",
         time_24hr: true 
     });
+    
 });
