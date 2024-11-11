@@ -80,7 +80,7 @@ function appendTaskToTaskListEl(taskId, taskData) {
     newEl.append(deleteButton)
 
     let toggleButton = document.createElement("button")
-    toggleButton.textContent = taskData.completed ? "Compledet!" : "Mark as Completed"
+    toggleButton.textContent = taskData.completed ? "Completed!" : "Mark as Completed"
     toggleButton.addEventListener("click", function() {
         let taskRef = ref(database, `tasks/${taskId}`)
         set(taskRef, {
@@ -126,4 +126,13 @@ flatpickr("#task-deadline", {
     enableTime: true,
     dateFormat: "Y-m-d H:i",
     minDate: "today"
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    flatpickr(".datetimepicker", {
+        enableTime: true,         
+        dateFormat: "Y-m-d H:i",  
+        minDate: "today",        
+        time_24hr: true 
+    });
 });
